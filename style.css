@@ -406,7 +406,7 @@ body {
   gap: 16px;
   margin-bottom: 20px;
 }
-.chart-card { padding: 20px; }
+.chart-card { padding: 20px; max-height: 240px; }
 .legend-row {
   display: flex; align-items: center; gap: 12px;
   font-size: 0.75rem; color: var(--text-muted);
@@ -653,7 +653,7 @@ body {
 .mem-val { color: var(--text-primary); font-weight: 600; }
 
 .lang-bars { display: flex; flex-direction: column; gap: 10px; }
-.lang-item {}
+.lang-item { margin-bottom: 2px; }
 .lang-header { display: flex; justify-content: space-between; font-size: 0.78rem; margin-bottom: 4px; }
 .lang-name { color: var(--text-secondary); }
 .lang-pct { color: var(--purple-light); font-weight: 600; }
@@ -735,7 +735,7 @@ body {
 .progress-sections { display: flex; flex-direction: column; gap: 16px; padding-bottom: 40px; }
 
 /* Heatmap */
-.heatmap-card {}
+.heatmap-card { overflow: hidden; }
 .heatmap-container {
   overflow-x: auto;
   padding-bottom: 8px;
@@ -761,7 +761,7 @@ body {
 
 /* Topic Progress */
 .topic-progress-list { display: flex; flex-direction: column; gap: 14px; }
-.topic-row {}
+.topic-row { margin-bottom: 2px; }
 .topic-row-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
 .topic-name { font-size: 0.85rem; color: var(--text-primary); font-weight: 600; }
 .topic-stats { font-size: 0.75rem; color: var(--text-muted); }
@@ -799,7 +799,7 @@ body {
   padding-bottom: 40px;
 }
 .memory-form { display: flex; flex-direction: column; gap: 12px; }
-.mem-field {}
+.mem-field { margin-bottom: 2px; }
 .mem-field label { display: block; font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
 .mem-field input, .mem-field select {
   width: 100%; background: var(--bg-input);
