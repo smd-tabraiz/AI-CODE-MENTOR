@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CodeMentor AI – Your Personalized Coding Coach</title>
+  <meta name="description" content="AI-powered coding practice mentor with persistent memory, performance analytics, and personalized problem recommendations to accelerate your interview prep." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Animated Background -->
+  <div class="bg-grid"></div>
+  <div class="bg-glow glow-1"></div>
+  <div class="bg-glow glow-2"></div>
+  <div class="bg-glow glow-3"></div>
+
+  <!-- App Shell -->
+  <div class="app-shell">
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <div class="logo">
+          <div class="logo-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+          </div>
+          <span class="logo-text">CodeMentor <span class="logo-ai">AI</span></span>
+        </div>
+        <button class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle sidebar">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+      </div>
+
+      <!-- Student Profile Card -->
+      <div class="profile-card">
+        <div class="avatar-ring">
+          <div class="avatar" id="avatarEl">AK</div>
+          <div class="avatar-status"></div>
+        </div>
+        <div class="profile-info">
+          <h3 class="profile-name" id="profileName">Arjun Kumar</h3>
+          <span class="profile-badge" id="profileLevel">Intermediate</span>
+        </div>
+        <div class="profile-stats">
+          <div class="stat-item">
+            <span class="stat-value" id="statSolved">87</span>
+            <span class="stat-label">Solved</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-item">
+            <span class="stat-value" id="statStreak">12</span>
+            <span class="stat-label">Day Streak</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-item">
+            <span class="stat-value" id="statAccuracy">68%</span>
+            <span class="stat-label">Accuracy</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Nav Links -->
+      <nav class="sidebar-nav">
+        <button class="nav-item active" data-view="dashboard" id="navDashboard">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+          Dashboard
+        </button>
+        <button class="nav-item" data-view="mentor" id="navMentor">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          Ask Mentor
+        </button>
+        <button class="nav-item" data-view="problems" id="navProblems">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+          Problems
+        </button>
+        <button class="nav-item" data-view="progress" id="navProgress">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+          Progress
+        </button>
+        <button class="nav-item" data-view="memory" id="navMemory">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+          Memory
+        </button>
+      </nav>
+
+      <!-- Readiness Score -->
+      <div class="readiness-card">
+        <div class="readiness-header">
+          <span>Interview Readiness</span>
+          <span class="readiness-score" id="readinessScore">63</span>
+        </div>
+        <div class="readiness-bar">
+          <div class="readiness-fill" id="readinessFill" style="width:63%"></div>
+        </div>
+        <p class="readiness-label" id="readinessLabel">Getting There 🚀</p>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content" id="mainContent">
+
+      <!-- Dashboard View -->
+      <div class="view active" id="viewDashboard">
+        <div class="view-header">
+          <div>
+            <h1 class="view-title">Performance Dashboard</h1>
+            <p class="view-subtitle">Track your coding journey with AI-powered insights</p>
+          </div>
+          <button class="btn-primary" id="logSubmissionBtn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            Log Submission
+          </button>
+        </div>
+
+        <!-- KPI Cards -->
+        <div class="kpi-grid">
+          <div class="kpi-card" style="--accent: #8b5cf6">
+            <div class="kpi-icon" style="background: rgba(139,92,246,0.15)">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#8b5cf6" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            </div>
+            <div class="kpi-content">
+              <span class="kpi-label">Problems Solved</span>
+              <span class="kpi-value" id="kpiSolved">87</span>
+              <span class="kpi-delta positive">+6 this week</span>
+            </div>
+          </div>
+          <div class="kpi-card" style="--accent: #06b6d4">
+            <div class="kpi-icon" style="background: rgba(6,182,212,0.15)">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#06b6d4" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <div class="kpi-content">
+              <span class="kpi-label">Avg Solve Time</span>
+              <span class="kpi-value" id="kpiTime">24m</span>
+              <span class="kpi-delta positive">-4m improved</span>
+            </div>
+          </div>
+          <div class="kpi-card" style="--accent: #10b981">
+            <div class="kpi-icon" style="background: rgba(16,185,129,0.15)">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            </div>
+            <div class="kpi-content">
+              <span class="kpi-label">First-Try Correct</span>
+              <span class="kpi-value" id="kpiCorrect">38%</span>
+              <span class="kpi-delta positive">+5% this month</span>
+            </div>
+          </div>
+          <div class="kpi-card" style="--accent: #f59e0b">
+            <div class="kpi-icon" style="background: rgba(245,158,11,0.15)">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            </div>
+            <div class="kpi-content">
+              <span class="kpi-label">Current Streak</span>
+              <span class="kpi-value" id="kpiStreak">12 days</span>
+              <span class="kpi-delta positive">Personal best!</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Charts Row -->
+        <div class="charts-row">
+          <!-- Activity Chart -->
+          <div class="card chart-card large">
+            <div class="card-header">
+              <h3>Weekly Activity</h3>
+              <div class="legend-row">
+                <span class="legend-dot" style="background:#8b5cf6"></span><span>Correct</span>
+                <span class="legend-dot" style="background:#ef4444"></span><span>Wrong</span>
+                <span class="legend-dot" style="background:#f59e0b"></span><span>TLE</span>
+              </div>
+            </div>
+            <canvas id="activityChart" height="180"></canvas>
+          </div>
+
+          <!-- Topic Radar -->
+          <div class="card chart-card small">
+            <div class="card-header">
+              <h3>Topic Mastery</h3>
+            </div>
+            <canvas id="radarChart" height="210"></canvas>
+          </div>
+        </div>
+
+        <!-- Bottom Row -->
+        <div class="bottom-row">
+          <!-- Mistake Patterns -->
+          <div class="card">
+            <div class="card-header">
+              <h3>Mistake Patterns</h3>
+              <span class="badge-pill badge-red">Needs Attention</span>
+            </div>
+            <div class="mistake-list" id="mistakeList"></div>
+          </div>
+
+          <!-- Recent Submissions -->
+          <div class="card">
+            <div class="card-header">
+              <h3>Recent Submissions</h3>
+              <button class="text-btn" id="viewAllBtn">View All</button>
+            </div>
+            <div class="submission-list" id="submissionList"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mentor Chat View -->
+      <div class="view" id="viewMentor">
+        <div class="view-header">
+          <div>
+            <h1 class="view-title">Ask Your Mentor</h1>
+            <p class="view-subtitle">Get personalized AI analysis based on your coding history</p>
+          </div>
+          <div class="ai-status">
+            <div class="pulse-dot"></div>
+            AI Online
+          </div>
+        </div>
+
+        <div class="mentor-layout">
+          <!-- Chat Panel -->
+          <div class="chat-panel card">
+            <div class="chat-messages" id="chatMessages">
+              <div class="message mentor-message">
+                <div class="message-avatar">AI</div>
+                <div class="message-bubble">
+                  <p>👋 Hello! I'm your AI Coding Mentor. I've analyzed your performance history across <strong>87 problems</strong> and I'm ready to provide personalized guidance.</p>
+                  <p style="margin-top:8px">Based on your recent activity, I see you've been struggling with <strong>Dynamic Programming</strong> and <strong>Graph Traversal</strong>. Want me to break down a specific area, or ask me anything about your coding journey?</p>
+                  <span class="message-time">Now</span>
+                </div>
+              </div>
+            </div>
+            <div class="chat-input-area">
+              <div class="quick-prompts" id="quickPrompts">
+                <button class="quick-btn" data-prompt="Analyze my biggest weakness and give me a focused 7-day plan">📊 Weakness Analysis</button>
+                <button class="quick-btn" data-prompt="What problem should I solve next based on my history?">🎯 Next Problem</button>
+                <button class="quick-btn" data-prompt="Am I ready for coding interviews? Give me an honest assessment">🏆 Interview Readiness</button>
+                <button class="quick-btn" data-prompt="Show me my mistake patterns and how to fix them">🐛 Fix My Mistakes</button>
+              </div>
+              <div class="input-row">
+                <textarea id="mentorInput" class="mentor-textarea" placeholder="Ask about your performance, request a problem, get debugging tips..." rows="1"></textarea>
+                <button class="send-btn" id="sendBtn">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Context Panel -->
+          <div class="context-panel">
+            <div class="card">
+              <div class="card-header"><h3>Memory Snapshot</h3></div>
+              <div class="memory-snapshot" id="memorySnapshot"></div>
+            </div>
+            <div class="card" style="margin-top:16px">
+              <div class="card-header"><h3>Language Profile</h3></div>
+              <div class="lang-bars" id="langBars"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Problems View -->
+      <div class="view" id="viewProblems">
+        <div class="view-header">
+          <div>
+            <h1 class="view-title">Recommended Problems</h1>
+            <p class="view-subtitle">AI-curated problems based on your weak areas and solving patterns</p>
+          </div>
+          <div class="filter-row">
+            <select class="filter-select" id="diffFilter">
+              <option value="all">All Levels</option>
+              <option value="easy">Easy</option>
+              <option value="medium">Medium</option>
+              <option value="hard">Hard</option>
+            </select>
+            <select class="filter-select" id="topicFilter">
+              <option value="all">All Topics</option>
+              <option value="dp">Dynamic Programming</option>
+              <option value="graph">Graphs</option>
+              <option value="tree">Trees</option>
+              <option value="array">Arrays</option>
+              <option value="string">Strings</option>
+            </select>
+          </div>
+        </div>
+        <div class="problems-grid" id="problemsGrid"></div>
+      </div>
+
+      <!-- Progress View -->
+      <div class="view" id="viewProgress">
+        <div class="view-header">
+          <div>
+            <h1 class="view-title">Progress Tracker</h1>
+            <p class="view-subtitle">Your coding journey over time</p>
+          </div>
+        </div>
+        <div class="progress-sections">
+          <!-- Heatmap -->
+          <div class="card heatmap-card">
+            <div class="card-header">
+              <h3>Submission Heatmap – Last 12 Weeks</h3>
+            </div>
+            <div class="heatmap-container" id="heatmapContainer"></div>
+          </div>
+
+          <!-- Topic Progress -->
+          <div class="card">
+            <div class="card-header">
+              <h3>Topic-Wise Progress</h3>
+            </div>
+            <div class="topic-progress-list" id="topicProgressList"></div>
+          </div>
+
+          <!-- Improvement Timeline -->
+          <div class="card">
+            <div class="card-header">
+              <h3>Improvement Timeline</h3>
+            </div>
+            <div class="timeline-list" id="timelineList"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Memory View -->
+      <div class="view" id="viewMemory">
+        <div class="view-header">
+          <div>
+            <h1 class="view-title">Student Memory Profile</h1>
+            <p class="view-subtitle">Edit and manage the AI mentor's knowledge about you</p>
+          </div>
+          <button class="btn-primary" id="saveMemoryBtn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+            Save Memory
+          </button>
+        </div>
+
+        <div class="memory-grid">
+          <div class="card">
+            <div class="card-header"><h3>👤 Student Profile</h3></div>
+            <div class="memory-form" id="profileForm"></div>
+          </div>
+          <div class="card">
+            <div class="card-header"><h3>📊 Performance Data</h3></div>
+            <div class="memory-form" id="perfForm"></div>
+          </div>
+          <div class="card">
+            <div class="card-header"><h3>🧠 Mistake Patterns</h3></div>
+            <div class="mistake-editor" id="mistakeEditor"></div>
+          </div>
+          <div class="card">
+            <div class="card-header"><h3>📝 Raw Memory Context</h3></div>
+            <textarea class="memory-textarea" id="rawMemory" spellcheck="false"></textarea>
+          </div>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <!-- Log Submission Modal -->
+  <div class="modal-overlay" id="submissionModal">
+    <div class="modal">
+      <div class="modal-header">
+        <h2>Log a Submission</h2>
+        <button class="modal-close" id="modalClose">✕</button>
+      </div>
+      <div class="modal-body">
+        <div class="form-row">
+          <label>Problem Name</label>
+          <input type="text" id="subProblem" placeholder="e.g. Longest Common Subsequence" class="form-input" />
+        </div>
+        <div class="form-row two-col">
+          <div>
+            <label>Topic</label>
+            <select id="subTopic" class="form-input">
+              <option>Dynamic Programming</option>
+              <option>Graph</option>
+              <option>Tree</option>
+              <option>Array</option>
+              <option>String</option>
+              <option>Binary Search</option>
+              <option>Heap</option>
+              <option>Backtracking</option>
+              <option>Greedy</option>
+            </select>
+          </div>
+          <div>
+            <label>Result</label>
+            <select id="subResult" class="form-input">
+              <option value="correct">✅ Correct</option>
+              <option value="wrong">❌ Wrong Answer</option>
+              <option value="tle">⏱ TLE</option>
+              <option value="runtime">💥 Runtime Error</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row two-col">
+          <div>
+            <label>Difficulty</label>
+            <select id="subDiff" class="form-input">
+              <option>Easy</option>
+              <option selected>Medium</option>
+              <option>Hard</option>
+            </select>
+          </div>
+          <div>
+            <label>Time Taken (mins)</label>
+            <input type="number" id="subTime" placeholder="25" class="form-input" min="1" max="240" />
+          </div>
+        </div>
+        <div class="form-row">
+          <label>Notes / Mistake (optional)</label>
+          <textarea id="subNotes" class="form-input" rows="2" placeholder="e.g. Forgot base case, wrong index boundary..."></textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-ghost" id="cancelSubmission">Cancel</button>
+        <button class="btn-primary" id="submitLog">Log Submission</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div class="toast" id="toast"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
